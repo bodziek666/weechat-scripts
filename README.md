@@ -9,4 +9,4 @@ Tunnel mpv socket over ssh:
 Delete tunneled socket after logout (~/.bash_logout):
 `if [ -S /tmp/mpvsocket ]; then
 `   rm /tmp/mpvsocket
-`fi`
+`fi
