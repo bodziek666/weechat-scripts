@@ -1,7 +1,8 @@
 Weechat scripts written for daily use and learning purposes.
  
 Enable socket on mpv startup - add this line to mpv.conf
-`input-unix-socket=/tmp/mpvsocket`
+`input-unix-socket=/tmp/mpvsocket` 
+or just simply run mpv with `--input-unix-socket="/tmp/mpvsocket`
  
 Tunnel mpv socket over ssh:
 `ssh -R/tmp/mpvsocket:/tmp/mpvsocket -p ssh_port user@host`
