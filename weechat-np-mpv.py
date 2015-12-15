@@ -20,8 +20,8 @@ def get_mpv_info():
 	
 def parse_info():
 	np = get_mpv_info()
-	filename = np['filename'].replace('_', ' ')
-	title = np['media-title'].replace('_', ' ')
+	filename = np['filename'].replace('_', ' ').encode('UTF-8')
+	title = np['media-title'].replace('_', ' ').encode('UTF-8')
 	progress = time.strftime("%H:%M:%S",time.gmtime(np['playback-time']))
 	duration = time.strftime("%H:%M:%S", time.gmtime(np['length']))
 	percent = int((np['playback-time']/np['length']) * 100)
