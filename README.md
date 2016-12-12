@@ -13,3 +13,5 @@ if [ -S /tmp/mpvsocket ]; then
    rm /tmp/mpvsocket
 fi
 ```
+In order to use weechat-np-mpc-hc script remotely you should tunnel port over ssh like this:
+`ssh -R 13579:localhost:13579 -p ssh_port user@host`
