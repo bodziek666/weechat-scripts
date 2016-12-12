@@ -5,7 +5,9 @@ Enable socket on mpv startup - add this line to mpv.conf
 It depends on mpv version. 
 
 Tunnel mpv socket over ssh:
-`ssh -R/tmp/mpvsocket:/tmp/mpvsocket -p ssh_port user@host`
+```
+ssh -R/tmp/mpvsocket:/tmp/mpvsocket -p ssh_port user@host
+```
  
 Delete tunneled socket after logout (add these lines to ~/.bash_logout):
 ```
@@ -14,4 +16,6 @@ if [ -S /tmp/mpvsocket ]; then
 fi
 ```
 In order to use weechat-np-mpc-hc script remotely you should tunnel port over ssh like this:
-`ssh -R 13579:localhost:13579 -p ssh_port user@host`
+```
+ssh -R 13579:localhost:13579 -p ssh_port user@host
+```
