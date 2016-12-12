@@ -38,7 +38,7 @@ def mpc_hc_info(data, buffer, args):
       "/me is watching \x02{} \x0Fat \x02{} \x0Fvia \x02{}".format(filename, progress, version))
    return weechat.WEECHAT_RC_OK
    
-weechat.register("weechat-np-mpv", "Bodzioslaw aka pwg", "0.1", "LGPL", "Simple mow playing for mpc_hc", "", "")
+weechat.register("weechat-np-mpc-hc", "Bodzioslaw aka pwg", "0.1", "LGPL", "Simple mow playing for mpc_hc", "", "")
 
 hook = weechat.hook_command("mpc", "Now playing mpc-hc", "", "", "", "mpc_hc_np", "")
 
