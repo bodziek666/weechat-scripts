@@ -6,7 +6,7 @@ import urllib2
 import re 
 
 def get_mpc_hc_info():
-   player = urllib2.urlopen("http://pwg.space/mpc.html").read()
+   player = urllib2.urlopen("http://127.0.0.1:13579/info.html").read()
    info = re.search('&laquo;\s(.*)\s&bull;\s(.*)\s&bull;\s(.*)\s&bull;', player)
    filename = info.group(2)
    progress = info.group(3)
@@ -14,7 +14,7 @@ def get_mpc_hc_info():
    return filename, progress, version
 
 def get_mpc_hc_status():
-   player = urllib2.urlopen("http://pwg.space/mpc_status.html").read()
+   player = urllib2.urlopen("http://127.0.0.1:13579/status.html").read()
    status = re.search('\("(.*?)",\s"(.*?)",\s(\d*),\s"(.*?)",\s(\d*),\s"(.*?)",', player)
    filename = status.group(1)
    pos = int(status.group(3))
@@ -25,7 +25,6 @@ def get_mpc_hc_status():
    bar_prog = int(round((pos/dur)*15, 1))
    bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
    return filename, pos_str, dur_str, percent, bar 
-
 
 def mpc_hc_np(data, buffer, args):
    filename, pos_str, dur_str, percent, bar = get_mpc_hc_status()
