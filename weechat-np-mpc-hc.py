@@ -16,7 +16,7 @@ def get_mpc_hc_info():
 
 def get_mpc_hc_status():
    player = urllib2.urlopen("http://127.0.0.1:13579/status.html").read()
-   status = re.search('\("(.*?)",\s"(.*?)",\s(?:\d*),\s"(.*?)",\s(\d*),\s"(.*?)",', player)
+   status = re.search('\("(.*?)",\s"(?:.*?)",\s(\d*),\s"(.*?)",\s(\d*),\s"(.*?)",', player)
 #   status = re.search('\("(.*?)",\s"(.*?)",\s(\d*),\s"(.*?)",\s(\d*),\s"(.*?)",', player)
 #   filename = status.group(1)
 #   pos = int(status.group(3))
