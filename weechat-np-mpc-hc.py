@@ -37,7 +37,7 @@ def parse_mpc_hc_status():
     percent = int((pos/dur) * 100)
     bar_prog = int(round((pos/dur)*15, 1))
     bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
-    return filename, post_str, dur_str, percent, bar 
+    return filename, pos_str, dur_str, percent, bar 
 
 def mpc_hc_np(data, buffer, args):
    filename, pos_str, dur_str, percent, bar = parse_mpc_hc_status()
