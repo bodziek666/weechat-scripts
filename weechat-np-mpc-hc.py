@@ -33,8 +33,8 @@ def get_mpc_hc_status():
 def parse_mpc_hc_status():
     filename, pos, pos_str, dur, dur_str = get_mpc_hc_status()
     filename = filename.replace('_', ' ').encode('UTF-8')
-    pos = int(pos)
-    dur = int(dur)
+    pos = float(pos)
+    dur = float(dur)
     percent = int((pos/dur) * 100)
     bar_prog = int(round((pos/dur)*15, 1))
     bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
