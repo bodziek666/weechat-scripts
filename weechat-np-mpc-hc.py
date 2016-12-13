@@ -16,11 +16,11 @@ def get_mpc_hc_status():
    player = urllib2.urlopen("http://127.0.0.1:13579/status.html").read()
    status = re.search('\("(.*?)",\s"(.*?)",\s(\d*),\s"(.*?)",\s(\d*),\s"(.*?)",', player)
    filename, _, pos, pos_str, dur, dur_str = status.groups()
+   filename = filename.replace('_', ' ').encode('UTF-8')
    return filename, pos, pos_str, dur, dur_str
 
 def parse_mpc_hc_status():
     filename, pos, pos_str, dur, dur_str = get_mpc_hc_status()
-    filename = filename.replace('_', ' ').encode('UTF-8')
     pos = float(pos)
     dur = float(dur)
     percent = int((pos/dur) * 100)
