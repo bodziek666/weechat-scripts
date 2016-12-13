@@ -24,13 +24,23 @@ def get_mpc_hc_status():
 #   pos_str = status.group(4)
 #   dur_str = status.group(6)
    filename, pos, pos_str, dur, dur_str = status.groups()
-   percent = int((pos/dur) * 100)
-   bar_prog = int(round((pos/dur)*15, 1))
-   bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
-   return filename, pos_str, dur_str, percent, bar 
+   #percent = int((pos/dur) * 100)
+   #bar_prog = int(round((pos/dur)*15, 1))
+   #bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
+   return filename, pos, pos_str, dur, dur_str
+
+def parse_mpc_hc_status():
+    filename, pos, pos_str, dur, dur_str = get_mpc_hc_status()
+    filename = filename.replace('_', ' ').encode('UTF-8')
+    pos = int(pos)
+    dur = int(dur)
+    percent = int((pos/dur) * 100)
+    bar_prog = int(round((pos/dur)*15, 1))
+    bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
+    return filename, post_str, dur_str, percent, bar 
 
 def mpc_hc_np(data, buffer, args):
-   filename, pos_str, dur_str, percent, bar = get_mpc_hc_status()
+   filename, pos_str, dur_str, percent, bar = parse_mpc_hc_status()
    weechat.command(weechat.current_buffer(),
       "/me is watching \x02{} {}/{} {} ({}%)".format(filename, pos_str, dur_str, bar, percent))
    return weechat.WEECHAT_RC_OK
