@@ -12,6 +12,7 @@ def get_mpc_hc_info():
 #   progress = info.group(3)
 #   version = info.group(1)
    version, filename, progress = info.groups()
+   filename = filename.replace('_', ' ').encode('UTF-8')
    return filename, progress, version
 
 def get_mpc_hc_status():
