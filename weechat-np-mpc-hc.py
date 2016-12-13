@@ -23,8 +23,8 @@ def get_mpc_hc_status():
 #   dur = int(status.group(5))
 #   pos_str = status.group(4)
 #   dur_str = status.group(6)
-   percent = int((pos/dur) * 100)
    filename, pos, pos_str, dur, dur_str = status.groups()
+   percent = int((pos/dur) * 100)
    bar_prog = int(round((pos/dur)*15, 1))
    bar = '['+'>'*bar_prog+'-'*(15-bar_prog)+']'
    return filename, pos_str, dur_str, percent, bar 
