@@ -11,6 +11,9 @@ def get_mpv_info():
 	client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 	client.connect("/tmp/mpvsocket")
 	res = {}
+# 
+# Length property was deprecated after the mpv 0.9 release, use 'duration' instead
+#
 	for i in ['filename', 'media-title', 'playback-time', 'length']:
 		req = '{"command": ["get_property", "%s"]}\n' %i
 		client.send(req)
