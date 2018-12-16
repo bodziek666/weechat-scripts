@@ -8,6 +8,8 @@ import os.path
 import os
 import fnmatch
 import time
+import urllib2
+from BeautifulSoup import BeautifulSoup
 
 def find_mpv_socket():
     base_dir = "/tmp"
@@ -40,16 +42,47 @@ def parse_info():
     try:
         np = get_mpv_info()
     except:
-        return ("Unknown")
+        return "Unknown"
 
     title = np['title'].replace('_', ' ').encode('UTF-8')
 
     return title
 
+def grab_youtube_url(title):
+    yt_base_url = "https://www.youtube.com"
+    yt_search_query_str = "/results?search_query={}"
+
+    search_query = title.strip().replace(" ", "+")
+
+    res = urllib2.urlopen(yt_base_url +
+                          yt_search_query_str.format(search_query))
+
+    yt_url = ""
+
+    if res.code == 200:
+        soup = BeautifulSoup(res.read())
+        query = soup.find(attrs={"class": "yt-lockup-title "})
+        if query:
+            link_part = query.first()["href"]
+            yt_url = yt_base_url + link_part
+
+    return yt_url
+
+
 def mpv_np(data, buffer, args):
+    yt_url = ""
+
     title = parse_info()
-    weechat.command(weechat.current_buffer(),
-            "Now playing: {}".format(title))
+
+    if title != "Unknown":
+        yt_url = grab_youtube_url(title)
+
+    np_str = (
+        "Now playing: {}"
+        " - Link: {}" if yt_url else "{}"
+    ).format(title, yt_url)
+
+    weechat.command(weechat.current_buffer(), np_str)
     return weechat.WEECHAT_RC_OK
 
 
